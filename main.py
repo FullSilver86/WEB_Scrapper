@@ -12,7 +12,7 @@ results = soup.find_all('a')
 lines = [str(result.get('href')) for result in results]
 links = [ link for link in lines if link.startswith('/d/oferta/')]
 
-
+# lal
 while True:
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
