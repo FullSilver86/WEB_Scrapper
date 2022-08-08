@@ -26,7 +26,7 @@ class OLX_listing:
         OLX_listing.number_of_pages = int(self.get_page_number())
         if OLX_listing.number_of_pages > 1:
             for page_number in range(2, int(OLX_listing.number_of_pages)+1):
-                OLX_listing.lines.append(self.get_all_pages_offer(f'https://www.olx.pl/oferty/q-{search_object}/?page={page_number}'))
+                OLX_listing.lines.extend(self.get_all_pages_offer(f'https://www.olx.pl/oferty/q-{search_object}/?page={page_number}'))
         self.get_links()
         print(self.URL)
 
