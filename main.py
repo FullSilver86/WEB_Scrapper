@@ -1,5 +1,5 @@
 from time import sleep
-from telesign.messaging import MessagingClient
+# from telesign.messaging import MessagingClient
 from Classes.Classes import OLX_listing
 
 #search object q-"name-2ndpartname"

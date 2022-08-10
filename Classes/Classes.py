@@ -11,7 +11,7 @@ class OLX_listing:
         page = requests.get(self.URL)
         soup = BeautifulSoup(page.content, "html.parser")
         results = soup.find_all('a')
-        lines = [str(result.get('href')) for result in results]
+        self.lines = [str(result.get('href')) for result in results]
         self.number_of_pages = int(self.get_page_number())
         if self.number_of_pages > 1:
             for page_number in range(2, int(self.number_of_pages)+1):
