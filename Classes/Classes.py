@@ -8,13 +8,10 @@ class OLX_listing:
         self.URL = urljoin(URL, search_object)
         self.search_object = search_object
 
-        self.URL = self.URL
         page = requests.get(self.URL)
         soup = BeautifulSoup(page.content, "html.parser")
         results = soup.find_all('a')
         lines = [str(result.get('href')) for result in results]
-        self.lines = lines
-        self.search_object = search_object
         self.number_of_pages = int(self.get_page_number())
         if self.number_of_pages > 1:
             for page_number in range(2, int(self.number_of_pages)+1):
@@ -32,6 +29,7 @@ class OLX_listing:
 
     def get_all_pages_offer(self, pageURL):
         self.pageURL = pageURL
+
         page = requests.get(self.pageURL)
         soup = BeautifulSoup(page.content, "html.parser")
         results = soup.find_all('a')
