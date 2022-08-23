@@ -1,7 +1,7 @@
 from time import sleep
 from Classes.Classes import OLX_listing
 
-search_object = "nemesis aftermath"
+search_object = "gra planszowa"
 URL = "https://www.olx.pl/api/v1/offers/?offset=0&limit=40&"
 
 '''
@@ -22,7 +22,7 @@ while True:
     if new_offers:
         current_offer.links.extend(new_offers)
     print(f" New listings : {new_offers}")
-    sleep(600)
+    sleep(300)
 
 
 
