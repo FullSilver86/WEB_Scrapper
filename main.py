@@ -1,8 +1,7 @@
 from time import sleep
 from Classes.Classes import OLX_listing
 
-#search object q-name-2ndpartname
-search_object = "gra planszowa"
+search_object = "nemesis aftermath"
 URL = "https://www.olx.pl/api/v1/offers/?offset=0&limit=40&"
 
 '''
