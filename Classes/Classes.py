@@ -20,7 +20,9 @@ class OLX_listing:
 
         converted_to_json = json.loads(page.text)
         for object in enumerate(converted_to_json["data"]):
-            if not converted_to_json["data"][object[0]]["promotion"]["highlighted"]:
+            # following options cause problems
+            # {'highlighted': True, 'urgent': False, 'top_ad': True, 'options': ['bundle_optimum'], 'b2c_ad_page': True, 'premium_ad_page': True}
+            if not any(converted_to_json["data"][object[0]]["promotion"].values()):
                 self.links.append(converted_to_json["data"][object[0]]["url"])
 
 

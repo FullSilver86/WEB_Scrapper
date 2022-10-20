@@ -29,12 +29,14 @@ def search():
     return render_template("search.html")
 
 @app.route('/product_list/<product>', methods=["GET"])
-def product_list(product):
+def product_list(product, new_offers_list=[]):
     listing = session['current_offer']
-    current_offer = Session_OLX(product).listing
-    new_offers = [new_link for new_link in set(current_offer) if new_link not in listing]
-
-    return render_template("product_list.html", product=product, new_offers=new_offers)
+    new_offer = Session_OLX(product).listing
+    for new_link in new_offer:
+        if new_link not in listing:
+            if new_link not in new_offers_list:
+                new_offers_list.append(new_link)
+    return render_template("product_list.html", product=product, new_offers=new_offers_list)
 
 
 @app.route("/login", methods=["POST", "GET"])
