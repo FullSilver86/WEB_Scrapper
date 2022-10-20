@@ -1,5 +1,6 @@
 import requests
 from time import sleep
+import json
 
 class OLX_listing:
 
@@ -17,16 +18,10 @@ class OLX_listing:
         '''Url%22%3Atrue%2C%22limit%22%3A30%7D%2C%7B%22field%22%3A%22category_without_exclusions%22%2C%22fetchLabel'''
         '''%22%3Atrue%2C%22fetchUrl%22%3Atrue%2C%22limit%22%3A20%7D%5D&sl=180b26a0c03x6be1b302''', headers=headers)
 
-        api_response = list(page.text.split())
-        listing = [url for url in api_response if 'https://www.olx.pl/d/oferta/' in url]
-        for line in listing:
-            link = self.substring_after(line, "url").split('''"''')[2]
-            self.links.extend([link])
-
-
-
-    def substring_after(self, line, delim):
-            return line.partition(delim)[2]
+        converted_to_json = json.loads(page.text)
+        for object in enumerate(converted_to_json["data"]):
+            if not converted_to_json["data"][object[0]]["promotion"]["highlighted"]:
+                self.links.append(converted_to_json["data"][object[0]]["url"])
 
 
 #to do remove this class
@@ -37,6 +32,10 @@ class Session_OLX:
     def __init__(self, search_object):
         self.search_object = search_object
         self.listing = OLX_listing(self.search_object).links
+
+
+
+
 
 
 
