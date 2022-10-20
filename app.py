@@ -22,16 +22,24 @@ def search():
             if not product:
                 flash('Product is required !')
             else:
-                return redirect(url_for('product_list',product=product))
+                session['current_offer']= Session_OLX(product).listing
+                return redirect(url_for('product_list', product=product))
 
 
     return render_template("search.html")
 
 @app.route('/product_list/<product>', methods=["GET"])
 def product_list(product):
-    new_search = Session_OLX(product)
-    listing = new_search.listing
-    return render_template("product_list.html", product=product, listing=listing)
+    listing = session['current_offer']
+    current_offer = Session_OLX(product).listing
+    new_offers = [new_link for new_link in set(current_offer) if new_link not in listing]
+
+    items = [
+        {'id': 1, 'name': 'Phone', 'barcode': '893212299897', 'price': 500},
+        {'id': 2, 'name': 'Laptop', 'barcode': '123985473165', 'price': 900},
+        {'id': 3, 'name': 'Keyboard', 'barcode': '231985128446', 'price': 150}
+    ]
+    return render_template("product_list.html", product=product, listing=new_offers, items=items)
 
 
 @app.route("/login", methods=["POST", "GET"])

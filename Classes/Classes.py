@@ -29,31 +29,14 @@ class OLX_listing:
             return line.partition(delim)[2]
 
 
+#to do remove this class
+
 class Session_OLX:
 
 
     def __init__(self, search_object):
         self.search_object = search_object
-        self.listing = self.main()
+        self.listing = OLX_listing(self.search_object).links
 
 
-    def main(self):
-        '''
-          Get current offer for products
-          '''
-        current_offer = OLX_listing(self.search_object)
 
-        '''
-        Checking for updates
-        '''
-
-        # while True:
-        new_offer = OLX_listing(self.search_object)
-        new_offers = [new_link for new_link in set(new_offer.links) if new_link not in current_offer.links]
-        print(len(new_offer.links))
-        print(new_offer.links)
-        if new_offers:
-            current_offer.links.extend(new_offers)
-        print(f" New listings : {new_offers}")
-        return new_offer.links
-            # sleep(500)
