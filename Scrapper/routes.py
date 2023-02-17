@@ -42,7 +42,7 @@ def search():
             db.session.add(new_search)
             db.session.commit()
             ident = new_search.id
-            return redirect(url_for('product_list', product=product))
+            return redirect(url_for('product_list', product=product, ident=ident))
 
 
     return render_template("search.html")
@@ -50,7 +50,8 @@ def search():
 @app.route('/product_list/<product>', methods=["GET"])
 @login_required
 def product_list(product, new_offers_list=[]):
-    search = Search.query.filter_by(name=product).first()
+    ident = username = request.args.get('ident')
+    search = Search.query.filter_by(id=ident).first()
     listing = search.current_offer
     new_offer = Session_OLX(product).listing
     for new_link in new_offer:
