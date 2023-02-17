@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block y %}
+
+   <h1> Login </h1>
+   <div class="container">
+       <form method="POST" class="form-register" style="color:white">
+           {{form.hidden_tag()}}
+         {{ form.username.label() }}
+         {{ form.username(class="form-control", placeholder="User name") }}
+
+          {{ form.password.label() }}
+         {{ form.password(class="form-control", placeholder="Password") }}
+      <br>
+           {{ form.login(class = "btn btn-lg btn-block btn-primary") }}
+
+       </form>
+   </div>
+
+
+{% endblock %}

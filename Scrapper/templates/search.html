@@ -3,13 +3,6 @@
 
 {% block y %}
 
-   {% if session.name %}
-      You are Registered {{ session.name }} <a href="/logout">logout</a>.
-   {% else %}
-      You are not Registered. <a href="/login">login</a>.
-   {% endif %}
-
-
 <body>
 
     <h1>{% block title %} Set search for new OLX offers {% endblock %}</h1>

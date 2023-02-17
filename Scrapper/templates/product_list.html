@@ -3,11 +3,6 @@
 {% extends "layout.html" %}
 
 {% block y %}
- {% if session.name %}
-      You are Registered {{ session.name }} <a href="/logout">logout</a>.
-   {% else %}
-      You are not Registered. <a href="/login">login</a>.
-   {% endif %}
 
     <meta charset="UTF-8">
     <title>Test</title>
@@ -24,7 +19,7 @@
         </thead>
         <tbody>
             <!-- Your rows inside the table HERE: -->
-            {% for link in new_offers %}
+            {% for link in new_offers_list %}
                 <tr>
                     <td>{{ link }}</td>
 
