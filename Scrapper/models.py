@@ -33,6 +33,7 @@ class Search(db.Model):
     link = db.Column(db.String(length=512), nullable=False )
     current_offer = db.Column(db.Text())
     owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    new_offers_list = db.Column(db.Text())
 
     def __repr__(self):
         return f'name = {self.name}, link is = {self.link} and owner is {self.owner}'
